@@ -14,12 +14,12 @@
     },
     "DEPENDENCY_VERSION": {
       "type": "string",
-      "description": "Maybe different deployments of this app run against different version of an SDK",
+      "description": "In some environments, this application runs against DEPENDENCY VERSION X, while in others it runs against VERSION Y.",
       "pattern": "^(\\d+)\\.(\\d+)\\.(\\d+)$"
     },
     "TIMEOUT": {
       "type": "string",
-      "description": "Timeout duration for calls to dependency",
+      "description": "Timeout duration for calls to DEPENDENCY Z",
       "pattern": "^\\d{1,5}$"
     }
   },

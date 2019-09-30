@@ -7,7 +7,6 @@ with open('../environment.schema.json') as schema_file:
 
 schema = json.loads(schema_string)
 
-# Copying `os.environ` appears to turn it
-# from whatever it is into a proper dict
+# Copying `os.environ` converts it into a proper dict
 env = os.environ.copy()
 validate(instance=env, schema=schema)
