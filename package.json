@@ -1,0 +1,14 @@
+{
+  "name": "environment-contract",
+  "version": "1.0.0",
+  "description": "Example",
+  "main": "example.js",
+  "scripts": {
+    "test": "APP_NAME=ex DEPENDENCY_URL=http://subdomain.domain.com/api/v4 DEPENDENCY_VERSION=3.2.1 TIMEOUT=5000 node example.js"
+  },
+  "author": "Andrew Schoenfeld",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^6.10.2"
+  }
+}
