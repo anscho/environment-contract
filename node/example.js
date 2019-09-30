@@ -1,5 +1,5 @@
 const Ajv = require('ajv')
-const schema = require('./environment.schema')
+const schema = require('../environment.schema')
 
 const ajv = new Ajv()
 const schema_validator = ajv.compile({
