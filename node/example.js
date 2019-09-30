@@ -7,4 +7,5 @@ const schema_validator = ajv.compile({
   '$async': true
 })
 
-schema_validator(process.env).catch(console.error)
+schema_validator(process.env)
+  .catch(console.error)
