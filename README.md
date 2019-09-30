@@ -1,23 +1,23 @@
 # The Environment Contract
 ## Why?
-In many applications, especially those ascribing to [The Twelve-Factor App](https://12factor.net/), configuration information is provided to the application via the environment.
+In many applications, especially [twelve-factor](https://12factor.net/) ones, configuration information is provided to the application via the environment.
 
 ### Safety
-If environment information is missing or incorrect, it could result in crashes, undefined behavior, or data loss. It's preferable to fail fast and abort a deploy. For this reason, the environment should be protected by a schema.
+Missing or incorrect environment information can result in crashes, undefined behavior, and data loss. By protecting configuration with a schema, we can fail fast and safely abort a deploy.
 
 ### Clarity
-Like any contract, making the implicit explicit has benefits to clarity. A developer configuring a new environment by copying an existing one may not be aware of their range of options, leading them to guess at the configuration.
+A developer configuring a new environment by copying an existing one may not be aware of their range of options, leading them to guess at the configuration. Making an implicit contract explicit streamlines onboarding and prevents regressions.
 
-A good contract will also include documentation, further improving clarity. When that documentation lives in the schema, it is less likely to fall out of date than if it lives in a readme or external documentation.
+A good contract will also include documentation, further improving clarity. Documentation in the schema is less likely to fall out of date than if it lives in a readme or external documentation.
 
 ### Simplicity
-In applications I've used that lack an environment contract, environment variables are re-validated throughout the codebase. Adding this contract consolidates the validation logic and applies it once on startup, improving reuse and reducing surface area for bugs.
+In applications I've used that lack an environment contract, environment variables are validated repeatedly throughout the codebase. Adding a contract consolidates the validation logic and applies it once on startup, improving reuse and reducing surface area for bugs.
 
 ## How?
-Since the environment is a string-to-string mapping, it is easily modeled as a dictionary and validated by [a JSON schema](https://json-schema.org). This repo includes [an example](environment.schema.json).
+Since the environment is a string-to-string mapping, it is easily modeled as a dictionary and validated by a [JSON schema](https://json-schema.org). This repo includes [an example](environment.schema.json).
 
 ### Requirements
-JSON Schema allows specification of which fields are required:
+JSON Schema allows specifying which fields are required:
 ```
   "required": [
     "APP_NAME",
@@ -26,7 +26,7 @@ JSON Schema allows specification of which fields are required:
   ],
 ```
 
-Given that the developer does not fully control the system environment, it seems cost-ineffective to specify every system-defined environment variable. In that light, I recommend allowing non-specified properties via the `additionalProperties` flag.
+I recommend allowing unspecified properties via the `additionalProperties` flag. For most applications, validating every system-defined environment variable seems like maintenance-inducing overkill.
 
 ### Descriptions
 JSON Schema includes a `description` element, which should be used to describe the purpose of the variable:
