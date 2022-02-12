@@ -9,6 +9,6 @@
   "author": "Andrew Schoenfeld",
   "license": "MIT",
   "dependencies": {
-    "ajv": "^6.10.2"
+    "ajv": "^6.12.3"
   }
 }
